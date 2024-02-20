@@ -15,7 +15,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.google.firebase.quickstart.analytics"
+        applicationId = "com.github.lander.firebasequickstart.android"
         minSdk = 19
         targetSdk = 34
         versionCode = 1
