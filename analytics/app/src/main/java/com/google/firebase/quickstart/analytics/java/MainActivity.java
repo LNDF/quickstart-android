@@ -43,6 +43,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.quickstart.analytics.R;
 import com.google.firebase.quickstart.analytics.databinding.ActivityMainBinding;
 import java.util.Locale;
+import java.util.Random;
 
 /**
  * Activity which displays numerous background images that may be viewed. These background images
@@ -95,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         // [END shared_app_measurement]
 
+        for (int i = 0; i < 1000; i++) {
+            juego();
+        }
+
         // On first app open, ask the user his/her favorite food. Then set this as a user property
         // on all subsequent opens.
         String userFavoriteFood = getUserFavoriteFood();
@@ -131,6 +136,44 @@ public class MainActivity extends AppCompatActivity {
 
         // Send initial screen screen view hit.
         recordImageView();
+    }
+
+    private boolean porcentaje(Random rand, float p) {
+        return rand.nextFloat() < p;
+    }
+
+    private void endLevel(String name) {
+        Bundle b = new Bundle();
+        b.putString(FirebaseAnalytics.Param.LEVEL_NAME, name);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.LEVEL_END, b);
+    }
+
+    private void juego() {
+        Random rand = new Random();
+        if (!porcentaje(rand, 0.99f)) return;
+        endLevel("TUTORIAL");
+        if (!porcentaje(rand, 0.9f)) return;
+        endLevel("LEVEL 1");
+        if (!porcentaje(rand, 0.8f)) return;
+        endLevel("LEVEL 2");
+        if (!porcentaje(rand, 0.7f)) return;
+        endLevel("LEVEL 3");
+        //PURCHASE
+        if (porcentaje(rand, 0.5f)) return;
+        if (!porcentaje(rand, 0.6f)) return;
+        endLevel("LEVEL 4");
+        if (!porcentaje(rand, 0.5f)) return;
+        endLevel("LEVEL 5");
+        if (!porcentaje(rand, 0.4f)) return;
+        endLevel("LEVEL 6");
+        if (!porcentaje(rand, 0.3f)) return;
+        endLevel("LEVEL 7");
+        if (!porcentaje(rand, 0.2f)) return;
+        endLevel("LEVEL 8");
+        if (!porcentaje(rand, 0.1f)) return;
+        endLevel("LEVEL 9");
+        if (!porcentaje(rand, 0.05f)) return;
+        endLevel("LEVEL 10");
     }
 
     @Override
